@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Hello, {{ user.username }}! Welcome back!</h2>
+    <p>You are successfully logged in.</p>
+    {% if user.profile.age %}
+        <p>Your age: {{ user.profile.age }} years old</p>
+    {% endif %}
+{% endif %}
+
+{% for post in post_list %}
+<div class="post-entry">
+    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+    <p>{{ post.body }}</p>
+</div>
+{% endfor %}
+
+{% endblock content %}
